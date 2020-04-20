@@ -17,7 +17,6 @@ DROP TABLE IF EXISTS applications;
 DROP TABLE IF EXISTS ticket_types;
 DROP TABLE IF EXISTS scrum_teams;
 DROP TABLE IF EXISTS environments;
-DROP TABLE IF EXISTS tickets_work_flow;
 
 -- users table
 create table users (
@@ -257,7 +256,7 @@ create table vcs_users (
    git_pswd      varchar(25) default 'Password01', 
    create_dt     timestamp default current_timestamp,
    terminate_dt  timestamp,
-   user_status   varchar(1) not null default '1' check (app_status in('1','0')), --  valid values are 1=active 2=inactive
+   user_status   varchar(1) not null default '1' check (user_status in('1','0')), --  valid values are 1=active 2=inactive
    foreign key (app_id) references applications(app_id)   
 );
 
