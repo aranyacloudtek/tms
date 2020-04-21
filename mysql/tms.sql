@@ -4,13 +4,13 @@ DROP TABLE IF EXISTS role_users;
 DROP TABLE IF EXISTS users_log;
 DROP TABLE IF EXISTS tickets_work_flow;
 DROP TABLE IF EXISTS tickets;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS role_permissions;
 DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS code_branches;
-DROP TABLE IF EXISTS code_repos;
 DROP TABLE IF EXISTS permissions;
 DROP TABLE IF EXISTS admin_log;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS code_branches;
+DROP TABLE IF EXISTS code_repos;
 DROP TABLE IF EXISTS departments;
 DROP TABLE IF EXISTS vcs_users;
 DROP TABLE IF EXISTS applications;
@@ -38,7 +38,7 @@ create table users (
 insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('rmarre01','Ratneswar','Marre','Password01','ratneswar@aranyacloudtek.com','1234567890','USA','super_admin',1,'');
 insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('crayap01','Chaitanya','Rayapureddy','Password01','chaitanya@aranyacloudtek.com','2345678901','USA','admin',1,'');
 insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('smamel01','Subbaraju','Mamellapally','Password01','subbu@aranyacloudtek.com','3456789012','USA','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('sdama01','Srinivas','Dama','Password01','srinivas@aranyacloudtek.com','4567890123','USA','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('sdama01', 'Srinivas','Dama','Password01','srinivas@aranyacloudtek.com','4567890123','USA','admin',1,'');
 insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('smanda01','Sasikanth','Mandali','Password01','sasi@aranyacloudtek.com','5678901234','India','admin',1,'');
 insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('mmanda01','Manohar','Mandali','Password01','manohar@aranyacloudtek.com','6789012345','India','admin',1,'');
 insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('bpasup01','Bhanu','Pasupuleti','Password01','bhanu@aranyacloudtek.com','7890123456','USA','admin',1,'');
@@ -50,8 +50,8 @@ insert into users (adid,first_name,last_name,password,email_id,mobile,country,us
 
 -- users_log table, dependent on users table
 create table users_log (
-	login_id     varchar(15),                       -- foreign key which refer to the login user from the user table, if not null will be inserted, that means unknown user or wrong login (adid / email_id) .. <>
-	log_dt       timestamp default current_timestamp, -- system date time
+	login_id     varchar(20),                         -- foreign key which refer to the login user from the user table, if not null will be inserted, that means unknown user or wrong login (adid / email_id) .. <>
+	login_dt     timestamp default current_timestamp, -- system date time, try to insert timezone
 	login_gloc	 varchar(100),                -- capture all possible values of the client machine, ip, geo location, timezone ect.. <>
 	login_type   varchar(20),                 -- manual login or hacking by the system / program ect.. <> 
 	login_ip     varchar(20), 			      -- system ip address from where user try to login or successfully login. 
@@ -66,32 +66,40 @@ insert into users_log (login_id,login_type,login_ip,login_status,login_rem) valu
 -- permissions table
 create table permissions (
 	permissions_id int not null auto_increment primary key,
-	permission_name varchar(50) unique key not null
+	adid        varchar(20),
+	permission_name varchar(50) unique key not null,
+	foreign key(adid) references users(adid)
 );
 
-insert into permissions (permission_name) values('assign_permissions_to_role');
-insert into permissions (permission_name) values('assign_users_to_role');
-insert into permissions (permission_name) values('create_role');
-insert into permissions (permission_name) values('create_user');
-insert into permissions (permission_name) values('delete_role');
-insert into permissions (permission_name) values('delete_user');
-insert into permissions (permission_name) values('edit_role');
-insert into permissions (permission_name) values('edit_user');
-insert into permissions (permission_name) values('vies_permissions_by_role');
-insert into permissions (permission_name) values('view_permissions');
-insert into permissions (permission_name) values('view_users_by_role');
-insert into permissions (permission_name) values('view_user');
-insert into permissions (permission_name) values('view_role');
+insert into permissions (adid,permission_name) values('rmarre01','assign_permissions_to_role');
+insert into permissions (adid,permission_name) values('rmarre01','assign_users_to_role');
+insert into permissions (adid,permission_name) values('rmarre01','create_role');
+insert into permissions (adid,permission_name) values('rmarre01','create_user');
+insert into permissions (adid,permission_name) values('rmarre01','delete_role');
+insert into permissions (adid,permission_name) values('rmarre01','delete_user');
+insert into permissions (adid,permission_name) values('rmarre01','edit_role');
+insert into permissions (adid,permission_name) values('rmarre01','edit_user');
+insert into permissions (adid,permission_name) values('rmarre01','vies_permissions_by_role');
+insert into permissions (adid,permission_name) values('rmarre01','view_permissions');
+insert into permissions (adid,permission_name) values('rmarre01','view_users_by_role');
+insert into permissions (adid,permission_name) values('rmarre01','view_user');
+insert into permissions (adid,permission_name) values('rmarre01','view_role');
 
 -- role table
+-- create table role (
+--   role_id int not null auto_increment primary key,
+--   role_name varchar(50) unique key not null
+-- );
 create table role (
-	id int not null auto_increment primary key,
-	role_name varchar(50) unique key not null
+    role_id int not null auto_increment primary key,
+	role_adid varchar(20),    
+	role_name varchar(50) unique key not null,
+    foreign key (role_adid) references users(adid)
 );
 
-insert into role (role_name) values('SuperUser');
-insert into role (role_name) values('AdminUser');
-insert into role (role_name) values('User');
+insert into role (role_adid,role_name) values('rmarre01','SuperUser');
+insert into role (role_adid,role_name) values('bpasup01','AdminUser');
+insert into role (role_adid,role_name) values('mmanda01','User');
 
 -- role_permissions table, dependent on permissions table
 -- id int not null auto_increment primary key,
@@ -99,7 +107,7 @@ insert into role (role_name) values('User');
 create table role_permissions (
 	role_id int,
 	role_permission_id int, 
-	foreign key (role_id) references role(id),
+	foreign key (role_id) references role(role_id),
 	foreign key (role_permission_id) references permissions(permissions_id)
 );
 
@@ -121,20 +129,22 @@ insert into role_permissions (role_id,role_permission_id) values(1,13);
 create table role_users (
 	id int not null auto_increment primary key,
 	role_id int,
-	user_id varchar(20), 
-    foreign key (role_id) references role(id),
-    foreign key (user_id) references users(adid)
+	user_adid varchar(20), 
+    foreign key (role_id) references role(role_id),
+    foreign key (user_adid) references users(adid)
 );
 
-insert into role_users (role_id,user_id) values(1,'rmarre01');
-insert into role_users (role_id,user_id) values(2,'bpasup01');
+insert into role_users (role_id,user_adid) values(1,'rmarre01');
+insert into role_users (role_id,user_adid) values(2,'bpasup01');
+insert into role_users (role_id,user_adid) values(2,'mmanda01');
 
 -- admin_log table
 create table admin_log (
 	log_id  int auto_increment primary key,
 	adid    varchar(20) not null,
 	log_dt  timestamp default current_timestamp,
-	action  varchar(100) not null
+	action  varchar(100) not null,
+	foreign key (adid) references users(adid)
 );
 
 insert into admin_log (adid,action) values('rmarre01','added new user - adid, firstName, lastName, eamilAddress');
@@ -257,11 +267,16 @@ create table vcs_users (
    git_pswd      varchar(25) default 'Password01', 
    create_dt     timestamp default current_timestamp,
    terminate_dt  timestamp,
-   user_status   varchar(1) not null default '1' check (app_status in('1','0')), --  valid values are 1=active 2=inactive
+   user_status   varchar(1) not null default '1' check (user_status in('1','0')), --  valid values are 1=active 2=inactive
    foreign key (app_id) references applications(app_id)   
 );
 
 insert into vcs_users (adid,first_name,last_name,app_id) values('rmarre01','Ratneswar','Marre','TMS');
+insert into vcs_users (adid,first_name,last_name,app_id) values('smanda01','Sasi','Mandali','TMS');
+insert into vcs_users (adid,first_name,last_name,app_id) values('mmanda01','Manohar','Mandali','TMS');
+insert into vcs_users (adid,first_name,last_name,app_id) values('bpasup01','Bhanu','Pasupuleti','TMS');
+insert into vcs_users (adid,first_name,last_name,app_id) values('mgoppi01','Manoj','Goppisetty','TMS');
+
 
 -- tickets_work_flow table
 create table tickets_work_flow (
@@ -278,5 +293,19 @@ insert into tickets_work_flow (ticket_id,adid,ticket_sts,update_desc) values(1,'
 insert into tickets_work_flow (ticket_id,adid,ticket_sts,update_desc) values(1,'rmarre01','rejected','rejected');
 
 commit;
-commit;
+
+select p.permission_name from users u 
+inner join role_users r_u on u.adid=r_u.user_adid 
+inner join role r on r_u.user_adid=r.role_adid 
+inner join role_permissions r_p on r_p.role_permission_id=r.role_id 
+inner join permissions p on p.permissions_id=r_p.role_permission_id where u.email_id='ratneswar@aranyacloudtek.com';
+
+select u.first_name, u.last_name, p.permission_name from users u 
+inner join role_users r_u on u.adid=r_u.user_adid 
+inner join role r on r_u.user_adid=r.role_adid 
+inner join role_permissions r_p on r_p.role_permission_id=r.role_id 
+inner join permissions p on p.permissions_id=r_p.role_permission_id where u.adid in('rmarre01','bpasup01','mmanda01');
+
+-- select p.permission_name, u.adid,u.email_id from users u, permissions p 
+-- where u.adid=p.adid and u.email_id='ratneswar@aranyacloudtek.com';
 
