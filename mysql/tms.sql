@@ -17,7 +17,6 @@ DROP TABLE IF EXISTS applications;
 DROP TABLE IF EXISTS ticket_types;
 DROP TABLE IF EXISTS scrum_teams;
 DROP TABLE IF EXISTS environments;
-DROP TABLE IF EXISTS tickets_work_flow;
 
 -- users table
 create table users (
