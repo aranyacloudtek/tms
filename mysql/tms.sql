@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS applications;
 DROP TABLE IF EXISTS ticket_types;
 DROP TABLE IF EXISTS scrum_teams;
 DROP TABLE IF EXISTS environments;
-
+ 
 -- users table
 create table users (
 	adid        varchar(20) primary key, -- user loadid, this column used for login
@@ -31,6 +31,7 @@ create table users (
 	country	    varchar(50),             -- user country 
 	user_type   varchar(15),             -- user type such as admin or normal user
 	user_status int not null,            -- user status 1 = active 0 = inactive
+	last_login	datetime, 				 -- this column captures users successful login date time, use built in now() function while updating. 
 	remarks	    varchar(100)             -- enter any comments to the user
 );
 
@@ -91,7 +92,7 @@ insert into permissions (adid,permission_name) values('rmarre01','view_role');
 -- );
 create table role (
     role_id int not null auto_increment primary key,
-	role_adid varchar(20),    
+	role_adid varchar(20),
 	role_name varchar(50) unique key not null,
     foreign key (role_adid) references users(adid)
 );
