@@ -46,7 +46,7 @@ public class UserController {
         return userRepository.findAll();
     }
 
- 
+
     // Get a Single User
     @GetMapping("/users/{adid}")
     public Users getUserById(@PathVariable(value = "adid") String adid) {
