@@ -19,7 +19,6 @@
 	<name>tms</name>
 	<description>Spring Boot of TMS</description>
 	<dependencies>
-	
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
@@ -30,21 +29,11 @@
             <artifactId>jstl</artifactId>
             <scope>provided</scope>
         </dependency>
-	
-		<!--
- 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>-->
-		<!-- https://mvnrepository.com/artifact/taglibs/standard -->
 		<dependency>
 		    <groupId>taglibs</groupId>
 		    <artifactId>standard</artifactId>
 		    <version>1.1.2</version>
 		</dependency>
-
  		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
