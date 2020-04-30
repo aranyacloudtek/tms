@@ -4,7 +4,6 @@ import com.act.tms.exception.ResourceNotFoundException;
 import com.act.tms.model.Users;
 import com.act.tms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -19,7 +18,7 @@ public class UserController {
     
     // Create a new User
     @PostMapping("/users")
-    public Users createUser(@Valid @RequestBody Users user) {
+    public @Valid Users createUser(@Valid @RequestBody Users user) {
 
         System.out.println(" initiating createUser() =" +user);
 
@@ -29,13 +28,18 @@ public class UserController {
     }
 
     // Get All Users
+   
+//    @POST
+//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+//    @Produces(MediaType.APPLICATION_JSON)
     @GetMapping("/users")
+    
     public List<Users> getAllUsers() {
     	
     	
         System.out.println(" initiating getAllUser()");
         
-    	System.out.println("userRepository.findAll().size() in updateUser(): " +userRepository.findAll().size());
+    	System.out.println("userRepository.findAll().size() in updateUser(): " + userRepository.findAll().size());
     	
     	userRepository.findAll().forEach(System.out::println);
     	
@@ -43,9 +47,13 @@ public class UserController {
             System.out.println("getAdid: "+model.getAdid());
         }
     	
-        return userRepository.findAll();
+        return  userRepository.findAll();
     }
 
+    
+   
+    
+    
 
     // Get a Single User
     @GetMapping("/users/{adid}")
@@ -122,6 +130,6 @@ public class UserController {
 
     //    return ResponseEntity.ok().build();
         //return 
-    //}
+    //} 
 
 }

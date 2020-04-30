@@ -16,7 +16,7 @@ public class HomeController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
-        return "login";
+        return "welcome";
     }
 
     @RequestMapping(value = {

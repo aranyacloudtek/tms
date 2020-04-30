@@ -19,5 +19,5 @@ public class HelloWorld {
 		SpringApplication.run(HelloWorld.class, args);
 	}
 
-}
+} 
 	

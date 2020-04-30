@@ -12,11 +12,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+
 @Table(name = "users")
-@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},allowGetters = true)
+//@EntityListeners(AuditingEntityListener.class)
+//@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},allowGetters = true)
 
 public class Users implements Serializable {
+	
+	
+	
+
 	/**
 	 * 
 	 */
@@ -24,7 +29,7 @@ public class Users implements Serializable {
 
 	@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
+    
 	private String adid;
 
     @NotBlank
@@ -169,4 +174,4 @@ public class Users implements Serializable {
 	}
 
 	
-}
+} 

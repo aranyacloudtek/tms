@@ -76,4 +76,4 @@ public class Note implements Serializable {
 		this.updatedAt = updatedAt;
 	}    
     
-}
+} 

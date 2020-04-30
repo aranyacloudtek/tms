@@ -8,9 +8,12 @@ import java.sql.Connection;
 public class DbTest {
 
 	public static void main(String args[]){  
+		
+			//		Testing Database connection and Retrieve data from the database
+		
 		try{  
 			Class.forName("com.mysql.cj.jdbc.Driver");  
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tms?useTimezone=true&serverTimezone=UTC","root","Irule4now");  
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tms?useTimezone=true&serverTimezone=UTC","root","Bhanu9157");  
 			//here sonoo is database name, root is username and password  
 			Statement stmt= (Statement) con.createStatement();  
 			ResultSet rs=((java.sql.Statement) stmt).executeQuery("select * from users");  

@@ -1,10 +1,11 @@
 package com.act.tms.repository;
 
 import com.act.tms.model.Users;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+//import org.hibernate.mapping.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 public interface UserRepository extends JpaRepository<Users, String> {
 
-}
+	Users findByAdid(String adid);
+} 
