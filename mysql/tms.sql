@@ -23,7 +23,7 @@ create table users (
 	adid        varchar(20) primary key, -- user loadid, this column used for login
 	first_name  varchar(50) not null,    -- first name of the user
 	last_name   varchar(50) not null,    -- last name of the user
-	password    varchar(20) not null,    -- mandatory password for user
+	password    varchar(255) not null,    -- mandatory password for user
 	email_id    varchar(50),             -- email id which used for login. 
 	caption     varchar(45),             -- user picture caption
 	image_id    longblob,                -- user photo
@@ -35,18 +35,18 @@ create table users (
 	remarks	    varchar(100)             -- enter any comments to the user
 );
 
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('rmarre01','Ratneswar','Marre','Password01','ratneswar@aranyacloudtek.com','1234567890','USA','super_admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('crayap01','Chaitanya','Rayapureddy','Password01','chaitanya@aranyacloudtek.com','2345678901','USA','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('smamel01','Subbaraju','Mamellapally','Password01','subbu@aranyacloudtek.com','3456789012','USA','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('sdama01', 'Srinivas','Dama','Password01','srinivas@aranyacloudtek.com','4567890123','USA','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('smanda01','Sasikanth','Mandali','Password01','sasi@aranyacloudtek.com','5678901234','India','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('mmanda01','Manohar','Mandali','Password01','manohar@aranyacloudtek.com','6789012345','India','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('bpasup01','Bhanu','Pasupuleti','Password01','bhanu@aranyacloudtek.com','7890123456','USA','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('mgoppi01','Manoj','Goppisetty','Password01','manoj@aranyacloudtek.com','8901234567','USA','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('vtorli01','Venkata','Torlikonda','Password01','venkat@aranyacloudtek.com','9012345678','USA','admin',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('rkakar01','Raju','Kakarlapudi','Password01','raju@aranyacloudtek.com','1123456789','USA','user',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('nnukal01','Naga','Nukala','Password01','naga@aranyacloudtek.com','1223456789','USA','user',1,'');
-insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('gchund01','Giri','Chunduru','Password01','giri@aranyacloudtek.com','1233456789','USA','user',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('rmarre01','Ratneswar','Marre','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','ratneswar@aranyacloudtek.com','1234567890','USA','super_admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('crayap01','Chaitanya','Rayapureddy','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','chaitanya@aranyacloudtek.com','2345678901','USA','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('smamel01','Subbaraju','Mamellapally','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','subbu@aranyacloudtek.com','3456789012','USA','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('sdama01', 'Srinivas','Dama','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','srinivas@aranyacloudtek.com','4567890123','USA','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('smanda01','Sasikanth','Mandali','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','sasi@aranyacloudtek.com','5678901234','India','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('mmanda01','Manohar','Mandali','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','manohar@aranyacloudtek.com','6789012345','India','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('bpasup01','Bhanu','Pasupuleti','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','bhanu@aranyacloudtek.com','7890123456','USA','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('mgoppi01','Manoj','Goppisetty','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','manoj@aranyacloudtek.com','8901234567','USA','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('vtorli01','Venkata','Torlikonda','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','venkat@aranyacloudtek.com','9012345678','USA','admin',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('rkakar01','Raju','Kakarlapudi','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','raju@aranyacloudtek.com','1123456789','USA','user',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('nnukal01','Naga','Nukala','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','naga@aranyacloudtek.com','1223456789','USA','user',1,'');
+insert into users (adid,first_name,last_name,password,email_id,mobile,country,user_type,user_status,remarks) values('gchund01','Giri','Chunduru','$2a$10$mz8tKAjCywsGiMWX8C4O7u7R7kFhxFasD/eraaYPf26VJiMSuxG16','giri@aranyacloudtek.com','1233456789','USA','user',1,'');
 
 -- users_log table, dependent on users table
 create table users_log (
