@@ -13,6 +13,6 @@ public class DatasourceConfig {
           .url("jdbc:mysql://localhost:3306/tms?useTimezone=true&serverTimezone=UTC")
           .username("root")
           .password("Bhanu9157")
-          .build(); 
+          .build();  
     }
 }

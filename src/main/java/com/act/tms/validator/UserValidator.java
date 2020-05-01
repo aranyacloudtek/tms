@@ -24,22 +24,32 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Users user = (Users) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-//        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-//            errors.rejectValue("username", "Size.userForm.username");
-////        }
-//        if (userService.findByUsername(user.getAdid()) != null) {
-//            errors.rejectValue("username", "Duplicate.userForm.username");
-//        }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "adid", "NotEmpty");
+        if (user.getAdid().length() < 6 || user.getAdid().length() > 32) {
+            errors.rejectValue("adid", "Size.userForm.adid");
+        }
+        if (userService.findByUsername(user.getAdid()) != null) {
+            errors.rejectValue("adid", "Duplicate.userForm.adid");
+        }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-//        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-//            errors.rejectValue("password", "Size.userForm.password");
-//        }
+        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+            errors.rejectValue("password", "Size.userForm.password");
+        }
 
-//        if (!user.getPasswordConfirm().equals(user.getPassword())) {
-//            errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
-//        }
+        if (!user.getPasswordConfirm().equals(user.getPassword())) {
+            errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
+        }
+        
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "first_name", "NotEmpty");
+        if (user.getFirst_name().length() < 3 || user.getFirst_name().length() > 32) {
+            errors.rejectValue("first_name", "Size.userForm.first_name");
+        }
+        
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "last_name", "NotEmpty");
+        if (user.getLast_name().length() < 3 || user.getLast_name().length() > 32) {
+            errors.rejectValue("last_name", "Size.userForm.last_name");
+        }
     }
     
 }

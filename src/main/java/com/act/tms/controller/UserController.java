@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    
+     
     // Create a new User
     @PostMapping("/users")
     public @Valid Users createUser(@Valid @RequestBody Users user) {

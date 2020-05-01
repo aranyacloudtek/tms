@@ -21,7 +21,7 @@ import com.act.tms.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
+    @Autowired 
     private UserRepository userRepository;
     
     
