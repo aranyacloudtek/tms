@@ -11,14 +11,29 @@
 
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/main.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/util.css" rel="stylesheet">
+      <link href="${contextPath}/resources/vendor/animate/animate.css" rel="stylesheet">
+      <!-- Used for A icon in the Login Page -->
+      <link href="${contextPath}/resources/fonts/iconic/css/material-design-iconic-font.min.css" rel="stylesheet"> 
   </head>
 
   <body>
 
-    <div class="container col-md-3">
+    <div class="container col-md-8">
+    	<div class="limiter">
+			<div class="container-login100">
+				<div class="wrap-login100">
 
         <form:form method="POST" modelAttribute="userForm" class="form-signin">
-            <h2 class="form-signin-heading">Create your account</h2>
+            <!-- <h4 class="form-signin-heading">Create your account</h4>
+ -->           
+ 					<span class="login100-form-title p-b-26">
+						Create Account
+					</span>
+ 						 <span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
             <spring:bind path="adid">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <form:input type="text" path="adid" class="form-control" placeholder="Username"
@@ -82,9 +97,23 @@
                 </div>
             </spring:bind>
             
+            
+            <div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+							<button class="login100-form-btn">
+								Submit
+							</button>
+						</div>
+					</div>
+            
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+           <!--  <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button> -->
         </form:form>
+         </div>
+		</div>
+	</div>
 
     </div>
 
