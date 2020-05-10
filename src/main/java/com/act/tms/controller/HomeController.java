@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.act.tms.model.Tickets;
 import com.act.tms.model.Users;
 import com.act.tms.service.SecurityService;
 import com.act.tms.service.UserService;
@@ -28,6 +29,8 @@ public class HomeController {
 	 @Autowired
 	    private UserValidator userValidator;
 
+	 
+	
 	    @GetMapping("/registration")
 	    public String registration(Model model) {
 	        model.addAttribute("userForm", new Users());
@@ -35,7 +38,8 @@ public class HomeController {
 	        return "registration";
 	    }
 
-	    @PostMapping("/registration")
+	       
+	 	@PostMapping("/registration")
 	    public String registration(@ModelAttribute("userForm") Users userForm, BindingResult bindingResult) {
 	        userValidator.validate(userForm, bindingResult);
 
@@ -50,6 +54,33 @@ public class HomeController {
 	        return "redirect:/welcome";
 	    }
 
+	 	
+	 	  @GetMapping("/tickets")
+		    public String tickets(Model model) {
+		        model.addAttribute("userForm", new Tickets());
+
+		        return "tickets";
+		    }
+
+		       
+		 	@PostMapping("/tickets")
+		    public String tickets(@ModelAttribute("userForm") Tickets userForm, BindingResult bindingResult) {
+		        userValidator.validate(userForm, bindingResult);
+
+		        if (bindingResult.hasErrors()) {
+		            return "registration";
+		        }
+		       
+		        return "redirect:/welcome";
+		    }
+
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
 	
 	@GetMapping("/login")
     public String login(Model model, String error, String logout) {
