@@ -1,10 +1,10 @@
 package com.act.tms.model;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+
 
 @Entity
 
@@ -14,34 +14,36 @@ import javax.validation.constraints.NotBlank;
 public class Tickets {
 	
 	
-	@Id
+//	@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
      
 	private long ticket_id;
 
-    @NotBlank
+   
 	private int priority;
 
-	@Column
+	
 	private String status;
 	
-	@NotBlank
+	
 	private String adid;
 	
-	@Column
+	
 	private String app_id;
 	
-	@NotBlank
+	
 	private String project;
 	
 	
-	@Column
+	
 	private String ticket_type;
 	
-	@NotBlank
+	
 	private String approved_by ;
 	
-	@NotBlank
+	private String branch;
+	
+	
 	private String ticket_desc;
 
 	public long getTicket_id() {
@@ -114,6 +116,16 @@ public class Tickets {
 
 	public void setTicket_desc(String ticket_desc) {
 		this.ticket_desc = ticket_desc;
+	}
+	
+	
+
+	public String getBranch() {
+		return branch;
+	}
+
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 
 	@Override

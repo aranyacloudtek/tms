@@ -11,23 +11,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.act.tms.model.Tickets;
 import com.act.tms.model.Users;
 import com.act.tms.service.SecurityService;
+import com.act.tms.service.TicketsService;
 import com.act.tms.service.UserService;
 import com.act.tms.validator.UserValidator;
 
 
 
 @Controller
+
 public class HomeController {
 	
 	 @Autowired
      private UserService userService;
-	
+	 
+	 @Autowired
+	 private TicketsService ticketService;
+	 
 		
 	 @Autowired
 	 private SecurityService securityService;
 
 	 @Autowired
-	    private UserValidator userValidator;
+	 private UserValidator userValidator;
 
 	 
 	
@@ -55,32 +60,27 @@ public class HomeController {
 	    }
 
 	 	
-	 	  @GetMapping("/tickets")
-		    public String tickets(Model model) {
-		        model.addAttribute("userForm", new Tickets());
+//	 	  @GetMapping("/tickets")
+//		    public String tickets(Model model) {
+//		        model.addAttribute("userForm", new Tickets());
+//
+//		        return "tickets";
+//		    }
+//
+//		       
+//		 	@PostMapping("/tickets")
+//		    public String tickets(@ModelAttribute("userForm") Tickets userForm, BindingResult bindingResult) {
+//		        userValidator.validate(userForm, bindingResult);
+//
+//		        if (bindingResult.hasErrors()) {
+//		            return "registration";
+//		        }
+//		       
+//		        return "redirect:/welcome";
+//		    }
 
-		        return "tickets";
-		    }
-
-		       
-		 	@PostMapping("/tickets")
-		    public String tickets(@ModelAttribute("userForm") Tickets userForm, BindingResult bindingResult) {
-		        userValidator.validate(userForm, bindingResult);
-
-		        if (bindingResult.hasErrors()) {
-		            return "registration";
-		        }
-		       
-		        return "redirect:/welcome";
-		    }
-
 	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
+		
 	
 	@GetMapping("/login")
     public String login(Model model, String error, String logout) {
@@ -94,9 +94,31 @@ public class HomeController {
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @GetMapping("/welcome")
     public String welcome(Model model) {
         return "welcome";
+    }
+    
+    
+//    @GetMapping("/")
+//    public String ticket(Model model) {
+//    	 model.addAttribute("ticketForm", new Tickets());
+//
+//        return "tickets";
+//    }
+    
+    @PostMapping("/")
+    public String postticket(@ModelAttribute("ticketForm") Tickets ticketForm, BindingResult bindingResult) {
+       
+
+        if (bindingResult.hasErrors()) {
+            return "tickets";
+        }
+
+        ticketService.save(ticketForm);
+
+
+        return "redirect:/welcome";
     }
     
 //    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
@@ -112,4 +134,8 @@ public class HomeController {
 ////    	model.addObject("user", u);
 //    	return model;
 //    }
+    
+    
+
+
 }

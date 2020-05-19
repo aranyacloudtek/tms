@@ -69,14 +69,14 @@ public class TicketsController {
 
     // Get a Single User
     @GetMapping("/tickets/{ticket_id}")
-    public Tickets getTicketById(@PathVariable(value = "ticket_id") long ticket_id) {
+    public Tickets getTicketById(@PathVariable(value = "ticket_id") int ticket_id) {
         return ticketsRepository.findById(ticket_id).orElseThrow(() -> new ResourceNotFoundException("Tickets", "ticket_id", ticket_id));
 //        return userRepository.findById(adid).orElseThrow(() -> new ResourceNotFoundException("User", "adid", adid));
     }
 
     // Update a tickets
     @PutMapping("/tickets/{ticket_id}")
-    public Tickets updateTickets(@PathVariable(value = "ticket_id") long ticket_id, @Valid @RequestBody Tickets ticketsDetails) {
+    public Tickets updateTickets(@PathVariable(value = "ticket_id") int ticket_id, @Valid @RequestBody Tickets ticketsDetails) {
 //    	  public Users updateUser(@PathVariable(value = "adid") String adid, @Valid @RequestBody Users userDetails) {
     		  
     		  

@@ -7,6 +7,6 @@ public interface TicketsService {
 	
 	 void save(Tickets tickets);
 
-	    Tickets findByTicket_id(int Ticket_id);
+	    Tickets findByTicket_id(Integer ticket_id);
 
 }
